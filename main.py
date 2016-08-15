@@ -25,7 +25,7 @@ class Post(db.Model):
     id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
     title = db.Column(db.String(255))
     text = db.Column(db.Text())
-    publish_date = db.Column(db.DATETIME())
+    publish_date = db.Column(db.DateTime())
     user_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
 
     def __init__(self, title):
@@ -33,6 +33,17 @@ class Post(db.Model):
 
     def __repr__(self):
         return "<Post '{}'>".format(self.title)
+
+
+class Comment(db.Model):
+    id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
+    name = db.Column(db.String(255))
+    text = db.Column(db.Text())
+    date = db.Column(db.DateTime())
+    post_id = db.Column(db.Integer(), db.ForeignKey('post.id'))
+
+    def __repr__(self):
+        return "<Comment '{}'>".format(self.text[:15])
 
 
 @app.route('/')
