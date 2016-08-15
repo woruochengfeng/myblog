@@ -28,6 +28,9 @@ class Post(db.Model):
     publish_date = db.Column(db.DATETIME())
     user_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
 
+    def __init__(self, title):
+        self.title = title
+
     def __repr__(self):
         return "<Post '{}'>".format(self.title)
 
