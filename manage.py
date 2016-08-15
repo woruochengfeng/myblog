@@ -10,7 +10,7 @@ manager = Manager(app)
 manager.add_command("server", Server())
 
 
-@manager.shell()
+@manager.shell
 def make_shell_context():
     return dict(app=app)
 
